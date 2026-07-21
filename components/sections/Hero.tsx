@@ -7,12 +7,18 @@ import Link from "next/link";
 import { Particles, ParticlesProvider } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Engine } from "@tsparticles/engine";
+import { usePathname } from "next/navigation";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 async function particlesInit(engine: Engine) {
   await loadSlim(engine);
 }
 
 export function Hero() {
+  const pathname = usePathname();
+  const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
+
   return (
     <ParticlesProvider init={particlesInit}>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -91,7 +97,7 @@ export function Hero() {
             className="mb-4 inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary"
           >
             <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-            Available for new opportunities
+            {t("hero.badge")}
           </motion.div>
           
           <motion.h1
@@ -100,9 +106,9 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
           >
-            Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Vinicius S.</span>
+            {t("hero.intro")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Vinicius S.</span>
             <br />
-            Software Engineer
+            {t("hero.role")}
           </motion.h1>
 
           <motion.p
@@ -111,9 +117,9 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8"
           >
-            Full Stack Developer passionate about building beautiful, scalable, and production-ready applications. 
+            {t("hero.description")}
             <br className="hidden md:block"/>
-            Specialized in <span className="text-foreground font-medium">Python</span>, <span className="text-foreground font-medium">React</span>, <span className="text-foreground font-medium">.NET</span>, and <span className="text-foreground font-medium">SQL</span>.
+            {t("hero.highlight")} <span className="text-foreground font-medium">Python</span>, <span className="text-foreground font-medium">React</span>, <span className="text-foreground font-medium">.NET</span>, and <span className="text-foreground font-medium">SQL</span>.
           </motion.p>
 
           <motion.div
@@ -122,19 +128,19 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Link href="/projects" className="rounded-full">
+            <Link href={`/${locale}/projects`} className="rounded-full">
               <Button size="lg" className="rounded-full w-full sm:w-auto">
-                Projects <ArrowRight className="ml-2 w-4 h-4" />
+                {t("hero.projects")} <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
             <Link href="/resume.pdf" target="_blank" className="rounded-full">
               <Button variant="outline" size="lg" className="rounded-full w-full sm:w-auto">
-                Download CV <Download className="ml-2 w-4 h-4" />
+                {t("hero.cv")} <Download className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <Link href="/contact" className="rounded-full">
+            <Link href={`/${locale}/contact`} className="rounded-full">
               <Button variant="ghost" size="lg" className="rounded-full w-full sm:w-auto">
-                Contact Me <Mail className="ml-2 w-4 h-4" />
+                {t("hero.contact")} <Mail className="ml-2 w-4 h-4" />
               </Button>
             </Link>
           </motion.div>

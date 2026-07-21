@@ -3,9 +3,13 @@
 import { motion } from "framer-motion";
 import { skills } from "@/data/skills";
 import { GitHubCalendar } from "react-github-calendar";
-
+import { usePathname } from "next/navigation";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 export default function AboutPage() {
+  const pathname = usePathname();
+  const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
   return (
     <div id="about" className="container mx-auto px-4 py-20 max-w-4xl scroll-mt-24">
       <motion.div
@@ -14,17 +18,11 @@ export default function AboutPage() {
         transition={{ duration: 0.5 }}
         className="mb-16"
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">About Me</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">{t("about.title")}</h1>
         <div className="prose prose-invert max-w-none text-lg text-muted-foreground leading-relaxed">
-          <p>
-            Hello! I&apos;m a software engineer with a passion for building scalable, high-performance web applications. I enjoy blending logic and design to create intuitive user experiences.
-          </p>
-          <p>
-            My journey into software development started with a curiosity for how things work on the internet. Fast forward to today, I have had the privilege of working on various projects, ranging from small business websites to enterprise-level microservices.
-          </p>
-          <p>
-            When I&apos;m not coding, you can usually find me reading about the latest tech trends, contributing to open-source, or experimenting with new frameworks. My main focus these days is mastering machine learning integration in full-stack applications.
-          </p>
+          <p>{t("about.paragraph1")}</p>
+          <p>{t("about.paragraph2")}</p>
+          <p>{t("about.paragraph3")}</p>
         </div>
       </motion.div>
 
@@ -33,7 +31,7 @@ export default function AboutPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <h2 className="text-3xl font-bold mb-8">Technical Mindset</h2>
+        <h2 className="text-3xl font-bold mb-8">{t("about.mindset")}</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {Object.entries(skills).map(([category, items], index) => (
@@ -71,7 +69,7 @@ export default function AboutPage() {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="mt-20"
       >
-        <h2 className="text-3xl font-bold mb-8">GitHub Contributions</h2>
+        <h2 className="text-3xl font-bold mb-8">{t("about.contributions")}</h2>
         <div className="p-8 border border-border bg-card rounded-xl overflow-x-auto flex justify-center">
           <GitHubCalendar 
             username="vinirex" 

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, ArrowLeft } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from "next";
 
 type Props = {
@@ -61,8 +62,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
         </div>
       </header>
 
-      <div className="aspect-video w-full rounded-xl overflow-hidden mb-12 bg-muted border border-border">
-        <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
+      <div className="relative aspect-video w-full rounded-xl overflow-hidden mb-12 bg-muted border border-border">
+        <Image src={project.thumbnail} alt={project.title} fill className="object-cover" />
       </div>
 
       <div className="prose prose-invert max-w-none">

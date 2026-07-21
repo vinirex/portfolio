@@ -1,24 +1,22 @@
 export const projects = [
   {
-    slug: "ecommerce-platform",
-    title: "E-Commerce Platform",
+    slug: "inferential-analysis-brasilian-exports",
+    title: "Inferential Analysis Brazilian Exports",
     thumbnail: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",
     videoPreview: "",
-    liveDemo: "https://example.com",
-    githubUrl: "https://github.com/",
-    technologies: ["React", "Next.js", "TypeScript", "TailwindCSS", "PostgreSQL"],
-    category: "Full Stack",
-    duration: "3 months",
-    problem: "Local businesses needed an easy way to sell online without high fees.",
-    solution: "Developed a multi-tenant e-commerce platform with a unified dashboard.",
-    architecture: "Next.js frontend with Server Actions, connected to a PostgreSQL database hosted on Supabase.",
-    challenges: "Handling real-time inventory updates and complex state management in the cart.",
-    results: "Onboarded 50+ local businesses in the first month.",
-    lessonsLearned: "Gained deep understanding of Server Components and optimistic UI updates.",
+    liveDemo: "https://exportacao-brasileira.streamlit.app/",
+    githubUrl: "https://github.com/vinirex/Analise_inferencial",
+    technologies: ["Python", "Streamlit", "Machine Learning"],
+    category: "Machine Learning",
+    duration: "3 weeks",
+    problem: "I wanted to apply the inferential analysis concepts I learned in class to a real dataset.",
+    solution: "Developed a web application to analyze Brazilian exports using inferential statistics.",
+    architecture: "Streamlit frontend with FastAPI backend, connected to a PostgreSQL database hosted on Supabase.",
+    challenges: "Extracting and cleaning the data from multiple sources, and handling the imbalance of the data.",
+    results: "Successfully applied inferential analysis concepts to a real dataset.",
+    lessonsLearned: "Gained deep understanding of inferential analysis and its applications.",
     images: [
-      "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
-    ]
+      "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80"]
   },
   {
     slug: "ai-finance-dashboard",

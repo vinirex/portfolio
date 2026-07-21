@@ -6,8 +6,14 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 export default function CertificatesPage() {
+  const pathname = usePathname();
+  const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
   return (
     <div className="container mx-auto px-4 py-20">
       <motion.div
@@ -15,10 +21,8 @@ export default function CertificatesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Certificates</h1>
-        <p className="text-muted-foreground text-lg mb-12 max-w-3xl">
-          Continuous learning is essential in software engineering. Here are some of the professional certifications and courses I have completed.
-        </p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">{t("certificates.title")}</h1>
+        <p className="text-muted-foreground text-lg mb-12 max-w-3xl">{t("certificates.description")}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certificates.map((cert, index) => (
@@ -29,10 +33,11 @@ export default function CertificatesPage() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card className="h-full flex flex-col overflow-hidden border-border/50 hover:border-primary/50 transition-colors">
-                <div className="aspect-video w-full overflow-hidden bg-muted">
-                  <img
+                <div className="relative aspect-video w-full overflow-hidden bg-muted">
+                  <Image
                     src={cert.image}
                     alt={cert.title}
+                    fill
                     className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -46,7 +51,7 @@ export default function CertificatesPage() {
                 <CardFooter>
                   <Button asChild variant="outline" className="w-full">
                     <Link href={cert.credentialLink} target="_blank">
-                      <ExternalLink className="mr-2 w-4 h-4" /> View Credential
+                      <ExternalLink className="mr-2 w-4 h-4" /> {t("certificates.button")}
                     </Link>
                   </Button>
                 </CardFooter>

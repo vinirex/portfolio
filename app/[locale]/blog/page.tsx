@@ -6,8 +6,13 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 export default function BlogPage() {
+  const pathname = usePathname();
+  const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
   return (
     <div className="container mx-auto px-4 py-20 max-w-4xl">
       <motion.div
@@ -15,10 +20,8 @@ export default function BlogPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Blog</h1>
-        <p className="text-muted-foreground text-lg mb-12">
-          Thoughts, learnings, and tutorials about software development, system architecture, and tech trends.
-        </p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">{t("blog.title")}</h1>
+        <p className="text-muted-foreground text-lg mb-12">{t("blog.description")}</p>
 
         <div className="space-y-8">
           {blogPosts.map((post, index) => (

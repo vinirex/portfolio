@@ -73,12 +73,13 @@ function FormControl({ children, ...props }: React.ComponentProps<"div"> & { chi
   const child = React.Children.only(children)
   const error = (formState.errors as Record<string, { message?: string }> | undefined)?.[fieldContext.name]
 
+  const childProps = child.props as Record<string, unknown>
+
   return React.cloneElement(child, {
     id: itemContext?.id,
     "aria-invalid": error ? true : undefined,
-    "data-invalid": error ? "true" : undefined,
     ...props,
-    ...child.props,
+    ...childProps,
   })
 }
 

@@ -4,8 +4,13 @@ import { motion } from "framer-motion";
 import { experience } from "@/data/experience";
 import { Briefcase, GraduationCap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { usePathname } from "next/navigation";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 export default function ExperiencePage() {
+  const pathname = usePathname();
+  const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
   return (
     <div className="container mx-auto px-4 py-20 max-w-4xl">
       <motion.div
@@ -13,7 +18,7 @@ export default function ExperiencePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-12">Experience & Education</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-12">{t("experience.title")}</h1>
 
         <div className="relative border-l border-border ml-3 md:ml-6 space-y-12">
           {experience.map((item, index) => (

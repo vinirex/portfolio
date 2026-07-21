@@ -3,10 +3,6 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import {
-  Calculator,
-  Calendar,
-  CreditCard,
-  Settings,
   Smile,
   User,
   FolderOpen,
@@ -16,6 +12,8 @@ import {
   Mail,
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 import {
   Command,
@@ -31,6 +29,9 @@ import {
 export function CommandMenu() {
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -52,44 +53,44 @@ export function CommandMenu() {
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
       <Command>
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder={t("commandMenu.searchPlaceholder")} />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>{t("commandMenu.noResults")}</CommandEmpty>
           
-          <CommandGroup heading="Navigation">
-            <CommandItem onSelect={() => runCommand(() => router.push("/"))}>
+          <CommandGroup heading={t("commandMenu.navigation")}>
+            <CommandItem onSelect={() => runCommand(() => router.push(`/${locale}`))}>
               <User className="mr-2 h-4 w-4" />
-              <span>Home</span>
+              <span>{t("nav.home")}</span>
             </CommandItem>
-            <CommandItem onSelect={() => runCommand(() => router.push("/about"))}>
+            <CommandItem onSelect={() => runCommand(() => router.push(`/${locale}#about`))}>
               <Smile className="mr-2 h-4 w-4" />
-              <span>About</span>
+              <span>{t("nav.about")}</span>
             </CommandItem>
-            <CommandItem onSelect={() => runCommand(() => router.push("/projects"))}>
+            <CommandItem onSelect={() => runCommand(() => router.push(`/${locale}/projects`))}>
               <FolderOpen className="mr-2 h-4 w-4" />
-              <span>Projects</span>
+              <span>{t("nav.projects")}</span>
             </CommandItem>
-            <CommandItem onSelect={() => runCommand(() => router.push("/experience"))}>
+            <CommandItem onSelect={() => runCommand(() => router.push(`/${locale}/experience`))}>
               <Briefcase className="mr-2 h-4 w-4" />
-              <span>Experience</span>
+              <span>{t("nav.experience")}</span>
             </CommandItem>
-            <CommandItem onSelect={() => runCommand(() => router.push("/certificates"))}>
+            <CommandItem onSelect={() => runCommand(() => router.push(`/${locale}/certificates`))}>
               <FileBadge className="mr-2 h-4 w-4" />
-              <span>Certificates</span>
+              <span>{t("nav.certificates")}</span>
             </CommandItem>
-            <CommandItem onSelect={() => runCommand(() => router.push("/blog"))}>
+            <CommandItem onSelect={() => runCommand(() => router.push(`/${locale}/blog`))}>
               <PenTool className="mr-2 h-4 w-4" />
-              <span>Blog</span>
+              <span>{t("nav.blog")}</span>
             </CommandItem>
-            <CommandItem onSelect={() => runCommand(() => router.push("/contact"))}>
+            <CommandItem onSelect={() => runCommand(() => router.push(`/${locale}/contact`))}>
               <Mail className="mr-2 h-4 w-4" />
-              <span>Contact</span>
+              <span>{t("nav.contact")}</span>
             </CommandItem>
           </CommandGroup>
           
           <CommandSeparator />
           
-          <CommandGroup heading="Socials">
+          <CommandGroup heading={t("commandMenu.socials")}>
             <CommandItem onSelect={() => runCommand(() => window.open("https://github.com/vinirex", "_blank"))}>
               <FaGithub className="mr-2 h-4 w-4" />
               <span>GitHub</span>

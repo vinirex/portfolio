@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { Terminal as TerminalIcon } from "lucide-react";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 type CommandHistory = {
   command: string;
@@ -15,6 +16,9 @@ export function Terminal() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
 
 
   const handleCommand = (e: React.FormEvent) => {
@@ -29,44 +33,44 @@ export function Terminal() {
       case "help":
         output = (
           <div className="text-muted-foreground">
-            Available commands:<br />
-            - <span className="text-primary">about</span>: Learn more about me<br />
-            - <span className="text-primary">projects</span>: View my portfolio<br />
-            - <span className="text-primary">skills</span>: See my technical skills<br />
-            - <span className="text-primary">resume</span>: Download my resume<br />
-            - <span className="text-primary">contact</span>: Get in touch<br />
-            - <span className="text-primary">github</span>: Open my GitHub profile<br />
-            - <span className="text-primary">linkedin</span>: Open my LinkedIn profile<br />
-            - <span className="text-primary">clear</span>: Clear terminal
+            {t("terminal.available")}<br />
+            - <span className="text-primary">about</span>: {t("terminal.about")}<br />
+            - <span className="text-primary">projects</span>: {t("terminal.projects")}<br />
+            - <span className="text-primary">skills</span>: {t("terminal.skills")}<br />
+            - <span className="text-primary">resume</span>: {t("terminal.resume")}<br />
+            - <span className="text-primary">contact</span>: {t("terminal.contact")}<br />
+            - <span className="text-primary">github</span>: {t("terminal.github")}<br />
+            - <span className="text-primary">linkedin</span>: {t("terminal.linkedin")}<br />
+            - <span className="text-primary">clear</span>: {t("terminal.clear")}
           </div>
         );
         break;
       case "about":
-        output = "Navigating to /about...";
-        router.push("/#about");
+        output = t("terminal.navigatingAbout");
+        router.push(`/${locale}#about`);
         break;
       case "projects":
-        output = "Navigating to /projects...";
-        router.push("/projects");
+        output = t("terminal.navigatingProjects");
+        router.push(`/${locale}/projects`);
         break;
       case "skills":
-        output = "Navigating to /about (Skills section)...";
-        router.push("/about");
+        output = t("terminal.scrollingAbout");
+        router.push(`/${locale}#about`);
         break;
       case "contact":
-        output = "Navigating to /contact...";
-        router.push("/contact");
+        output = t("terminal.navigatingContact");
+        router.push(`/${locale}/contact`);
         break;
       case "resume":
-        output = "Downloading resume...";
+        output = t("terminal.downloadingResume");
         window.open("/resume.pdf", "_blank");
         break;
       case "github":
-        output = "Opening GitHub...";
+        output = t("terminal.openingGitHub");
         window.open("https://github.com/vinirex", "_blank");
         break;
       case "linkedin":
-        output = "Opening LinkedIn...";
+        output = t("terminal.openingLinkedIn");
         window.open("https://www.linkedin.com/in/-vini-silva/", "_blank");
         break;
       case "clear":
@@ -74,7 +78,7 @@ export function Terminal() {
         setInput("");
         return;
       default:
-        output = <span className="text-destructive">Command not found: {cmd}. Type 'help' for a list of commands.</span>;
+        output = <span className="text-destructive">{t("terminal.unknown")}: {cmd}. {t("terminal.help")}</span>;
     }
 
     setHistory((prev) => [...prev, { command: cmd, output }]);
@@ -102,8 +106,8 @@ export function Terminal() {
           onClick={() => inputRef.current?.focus()}
         >
           <div className="text-muted-foreground mb-4">
-            Welcome to ViniciusOS (v1.0.0)<br />
-            Type 'help' to see available commands.
+            {t("terminal.welcome")}<br />
+            {t("terminal.help")}
           </div>
 
           {history.map((item, i) => (

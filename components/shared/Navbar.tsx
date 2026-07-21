@@ -7,18 +7,21 @@ import { useEffect, useState, type MouseEvent } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/#about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
-  { href: "/certificates", label: "Certificates" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", key: "nav.home" },
+  { href: "/#about", key: "nav.about" },
+  { href: "/projects", key: "nav.projects" },
+  { href: "/experience", key: "nav.experience" },
+  { href: "/certificates", key: "nav.certificates" },
+  { href: "/contact", key: "nav.contact" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
+  const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -33,9 +36,9 @@ export function Navbar() {
 
   const handleLinkClick = (
     event: MouseEvent<HTMLAnchorElement>,
-    link: { href: string; label: string }
+    link: { href: string; key: string }
   ) => {
-    if (link.label === "About") {
+    if (link.key === "nav.about") {
       event.preventDefault();
 
       const aboutSection = document.getElementById("about");
@@ -44,7 +47,7 @@ export function Navbar() {
         return;
       }
 
-      router.push("/#about");
+      router.push(`/${locale}#about`);
     }
   };
 
@@ -58,7 +61,7 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="font-bold text-xl tracking-tight flex items-center gap-2 hover:text-primary transition-colors">
+        <Link href={`/${locale}`} className="font-bold text-xl tracking-tight flex items-center gap-2 hover:text-primary transition-colors">
           <span className="text-primary-foreground p-1 rounded-md overflow-hidden">
             <Image src="/logo.png" alt="Vinicius logo" width={40} height={40} className=" object-contain" />
           </span>
@@ -67,24 +70,29 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={(event) => handleLinkClick(event, link)}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
-                pathname === link.href
-                  ? "text-primary"
-                  : "text-muted-foreground"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const href = `/${locale}${link.href === "/" ? "" : link.href}`;
+            return (
+              <Link
+                key={link.href}
+                href={href}
+                onClick={(event) => handleLinkClick(event, link)}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  pathname === href || pathname === link.href
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                )}
+              >
+                {getTranslation(locale, link.key)}
+              </Link>
+            );
+          })}
           
+          <LocaleSwitcher />
+
           <Button variant="outline" size="sm" className="hidden lg:flex items-center gap-2 text-muted-foreground" onClick={() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}>
-            Search <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100"><span className="text-xs">Ctrl</span>K</kbd>
+            {getTranslation(locale, "nav.search")} <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100"><span className="text-xs">Ctrl</span>K</kbd>
           </Button>
         </nav>
 
@@ -100,22 +108,25 @@ export function Navbar() {
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 w-full bg-background border-b border-border shadow-lg py-4 px-4 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={(event) => {
-                handleLinkClick(event, link);
-                setIsMobileMenuOpen(false);
-              }}
-              className={cn(
-                "text-base font-medium transition-colors",
-                pathname === link.href ? "text-primary" : "text-muted-foreground"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const href = `/${locale}${link.href === "/" ? "" : link.href}`;
+            return (
+              <Link
+                key={link.href}
+                href={href}
+                onClick={(event) => {
+                  handleLinkClick(event, link);
+                  setIsMobileMenuOpen(false);
+                }}
+                className={cn(
+                  "text-base font-medium transition-colors",
+                  pathname === href || pathname === link.href ? "text-primary" : "text-muted-foreground"
+                )}
+              >
+                {getTranslation(locale, link.key)}
+              </Link>
+            );
+          })}
         </div>
       )}
     </header>

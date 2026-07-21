@@ -16,15 +16,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Send } from "lucide-react";
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Invalid email address." }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-});
+import { usePathname } from "next/navigation";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 export default function ContactPage() {
+  const pathname = usePathname();
+  const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
+
+  const formSchema = z.object({
+    name: z.string().min(2, { message: t("contact.validations.name") }),
+    email: z.string().email({ message: t("contact.validations.email") }),
+    subject: z.string().min(5, { message: t("contact.validations.subject") }),
+    message: z.string().min(10, { message: t("contact.validations.message") }),
+  });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,7 +43,7 @@ export default function ContactPage() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     // Here you would typically send the data to an API route or email service (e.g. Resend, EmailJS)
-    alert("Message sent successfully! (Mocked)");
+    alert(t("contact.success"));
     form.reset();
   }
 
@@ -49,10 +54,8 @@ export default function ContactPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h1>
-        <p className="text-muted-foreground text-lg mb-12 max-w-3xl">
-          I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-        </p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">{t("contact.title")}</h1>
+        <p className="text-muted-foreground text-lg mb-12 max-w-3xl">{t("contact.description")}</p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
@@ -62,7 +65,7 @@ export default function ContactPage() {
                 <Mail className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-semibold text-lg">Email</h3>
+                <h3 className="font-semibold text-lg">{t("contact.email")}</h3>
                 <p className="text-muted-foreground">contact@vinicius.dev</p>
               </div>
             </div>
@@ -72,8 +75,8 @@ export default function ContactPage() {
                 <MapPin className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-semibold text-lg">Location</h3>
-                <p className="text-muted-foreground">Brazil / Remote</p>
+                <h3 className="font-semibold text-lg">{t("contact.location")}</h3>
+                <p className="text-muted-foreground">{t("contact.locationValue")}</p>
               </div>
             </div>
           </div>
@@ -87,9 +90,9 @@ export default function ContactPage() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Name</FormLabel>
+                        <FormLabel>{t("contact.name")}</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} />
+                          <Input placeholder={t("contact.namePlaceholder")} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -100,9 +103,9 @@ export default function ContactPage() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>{t("contact.emailLabel")}</FormLabel>
                         <FormControl>
-                          <Input placeholder="john@example.com" {...field} />
+                          <Input placeholder={t("contact.emailPlaceholder")} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -115,9 +118,9 @@ export default function ContactPage() {
                   name="subject"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Subject</FormLabel>
+                      <FormLabel>{t("contact.subject")}</FormLabel>
                       <FormControl>
-                        <Input placeholder="Job Opportunity" {...field} />
+                        <Input placeholder={t("contact.subjectPlaceholder")} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -129,10 +132,10 @@ export default function ContactPage() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Message</FormLabel>
+                      <FormLabel>{t("contact.message")}</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Your message here..." 
+                          placeholder={t("contact.messagePlaceholder")} 
                           className="min-h-[150px]"
                           {...field} 
                         />
@@ -143,7 +146,7 @@ export default function ContactPage() {
                 />
                 
                 <Button type="submit" className="w-full sm:w-auto">
-                  Send Message <Send className="ml-2 w-4 h-4" />
+                  {t("contact.submit")} <Send className="ml-2 w-4 h-4" />
                 </Button>
               </form>
             </Form>
