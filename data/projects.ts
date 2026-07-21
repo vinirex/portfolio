@@ -5,7 +5,7 @@ export const projects = [
     thumbnail: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",
     videoPreview: "",
     liveDemo: "https://example.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/",
     technologies: ["React", "Next.js", "TypeScript", "TailwindCSS", "PostgreSQL"],
     category: "Full Stack",
     duration: "3 months",

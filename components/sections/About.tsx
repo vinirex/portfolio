@@ -4,9 +4,10 @@ import { motion } from "framer-motion";
 import { skills } from "@/data/skills";
 import { GitHubCalendar } from "react-github-calendar";
 
+
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 py-20 max-w-4xl">
+    <div id="about" className="container mx-auto px-4 py-20 max-w-4xl scroll-mt-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -73,7 +74,7 @@ export default function AboutPage() {
         <h2 className="text-3xl font-bold mb-8">GitHub Contributions</h2>
         <div className="p-8 border border-border bg-card rounded-xl overflow-x-auto flex justify-center">
           <GitHubCalendar 
-            username="vini-rex" 
+            username="vinirex" 
             colorScheme="dark"
             theme={{
               light: ['#18181b', '#3B82F6'],

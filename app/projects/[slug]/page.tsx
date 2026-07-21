@@ -43,16 +43,18 @@ export default async function ProjectCaseStudy({ params }: Props) {
         </div>
         <div className="flex gap-4">
           {project.liveDemo && (
-            <Button asChild>
-              <Link href={project.liveDemo} target="_blank">
-                <ExternalLink className="mr-2 w-4 h-4" /> Live Demo
+            <Button>
+              <Link href={project.liveDemo} target="_blank" className="inline-flex items-center justify-center">
+                <ExternalLink className="mr-2 w-4 h-4" />
+                <span>Live Demo</span>
               </Link>
             </Button>
           )}
           {project.githubUrl && (
-            <Button asChild variant="outline">
-              <Link href={project.githubUrl} target="_blank">
-                <FaGithub className="mr-2 w-4 h-4" /> Source Code
+            <Button variant="outline">
+              <Link href={project.githubUrl} target="_blank" className="inline-flex items-center justify-center">
+                <FaGithub className="mr-2 w-4 h-4" />
+                <span>Source Code</span>
               </Link>
             </Button>
           )}

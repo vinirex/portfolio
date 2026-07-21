@@ -18,6 +18,7 @@ import {
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -25,7 +26,6 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
 
 export function CommandMenu() {
@@ -51,55 +51,57 @@ export function CommandMenu() {
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
-      <CommandInput placeholder="Type a command or search..." />
-      <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        
-        <CommandGroup heading="Navigation">
-          <CommandItem onSelect={() => runCommand(() => router.push("/"))}>
-            <User className="mr-2 h-4 w-4" />
-            <span>Home</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/about"))}>
-            <Smile className="mr-2 h-4 w-4" />
-            <span>About</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/projects"))}>
-            <FolderOpen className="mr-2 h-4 w-4" />
-            <span>Projects</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/experience"))}>
-            <Briefcase className="mr-2 h-4 w-4" />
-            <span>Experience</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/certificates"))}>
-            <FileBadge className="mr-2 h-4 w-4" />
-            <span>Certificates</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/blog"))}>
-            <PenTool className="mr-2 h-4 w-4" />
-            <span>Blog</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/contact"))}>
-            <Mail className="mr-2 h-4 w-4" />
-            <span>Contact</span>
-          </CommandItem>
-        </CommandGroup>
-        
-        <CommandSeparator />
-        
-        <CommandGroup heading="Socials">
-          <CommandItem onSelect={() => runCommand(() => window.open("https://github.com", "_blank"))}>
-            <FaGithub className="mr-2 h-4 w-4" />
-            <span>GitHub</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => window.open("https://linkedin.com", "_blank"))}>
-            <FaLinkedin className="mr-2 h-4 w-4" />
-            <span>LinkedIn</span>
-          </CommandItem>
-        </CommandGroup>
+      <Command>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          
+          <CommandGroup heading="Navigation">
+            <CommandItem onSelect={() => runCommand(() => router.push("/"))}>
+              <User className="mr-2 h-4 w-4" />
+              <span>Home</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => router.push("/about"))}>
+              <Smile className="mr-2 h-4 w-4" />
+              <span>About</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => router.push("/projects"))}>
+              <FolderOpen className="mr-2 h-4 w-4" />
+              <span>Projects</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => router.push("/experience"))}>
+              <Briefcase className="mr-2 h-4 w-4" />
+              <span>Experience</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => router.push("/certificates"))}>
+              <FileBadge className="mr-2 h-4 w-4" />
+              <span>Certificates</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => router.push("/blog"))}>
+              <PenTool className="mr-2 h-4 w-4" />
+              <span>Blog</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => router.push("/contact"))}>
+              <Mail className="mr-2 h-4 w-4" />
+              <span>Contact</span>
+            </CommandItem>
+          </CommandGroup>
+          
+          <CommandSeparator />
+          
+          <CommandGroup heading="Socials">
+            <CommandItem onSelect={() => runCommand(() => window.open("https://github.com/vinirex", "_blank"))}>
+              <FaGithub className="mr-2 h-4 w-4" />
+              <span>GitHub</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => window.open("https://www.linkedin.com/in/-vini-silva/", "_blank"))}>
+              <FaLinkedin className="mr-2 h-4 w-4" />
+              <span>LinkedIn</span>
+            </CommandItem>
+          </CommandGroup>
 
-      </CommandList>
+        </CommandList>
+      </Command>
     </CommandDialog>
   );
 }

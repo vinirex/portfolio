@@ -79,7 +79,7 @@ export default function ContactPage() {
           </div>
 
           <div className="lg:col-span-2 bg-card border border-border p-8 rounded-xl shadow-sm">
-            <Form {...form}>
+            <Form form={form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField

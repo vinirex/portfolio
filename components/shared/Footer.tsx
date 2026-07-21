@@ -16,15 +16,15 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-4 text-muted-foreground">
-          <Link href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+          <Link href="https://github.com/vinirex" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
             <FaGithub className="w-5 h-5" />
             <span className="sr-only">GitHub</span>
           </Link>
-          <Link href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+          <Link href="https://www.linkedin.com/in/-vini-silva/" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
             <FaLinkedin className="w-5 h-5" />
             <span className="sr-only">LinkedIn</span>
           </Link>
-          <Link href="mailto:contact@example.com" className="hover:text-primary transition-colors">
+          <Link href="mailto:vinirex007@gmail.com" className="hover:text-primary transition-colors">
             <Mail className="w-5 h-5" />
             <span className="sr-only">Email</span>
           </Link>

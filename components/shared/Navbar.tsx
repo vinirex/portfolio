@@ -1,24 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import { Menu, X, Command } from "lucide-react";
+import { useEffect, useState, type MouseEvent } from "react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  { href: "/#about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/experience", label: "Experience" },
   { href: "/certificates", label: "Certificates" },
-  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -29,6 +30,23 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLinkClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    link: { href: string; label: string }
+  ) => {
+    if (link.label === "About") {
+      event.preventDefault();
+
+      const aboutSection = document.getElementById("about");
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+
+      router.push("/#about");
+    }
+  };
 
   return (
     <header
@@ -41,8 +59,8 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="font-bold text-xl tracking-tight flex items-center gap-2 hover:text-primary transition-colors">
-          <span className="bg-primary text-primary-foreground p-1 rounded-md">
-            <Command className="w-5 h-5" />
+          <span className="text-primary-foreground p-1 rounded-md overflow-hidden">
+            <Image src="/logo.png" alt="Vinicius logo" width={40} height={40} className=" object-contain" />
           </span>
           Vinicius<span className="text-primary">.dev</span>
         </Link>
@@ -53,6 +71,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
+              onClick={(event) => handleLinkClick(event, link)}
               className={cn(
                 "text-sm font-medium transition-colors hover:text-primary",
                 pathname === link.href
@@ -85,11 +104,14 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
+              onClick={(event) => {
+                handleLinkClick(event, link);
+                setIsMobileMenuOpen(false);
+              }}
               className={cn(
                 "text-base font-medium transition-colors",
                 pathname === link.href ? "text-primary" : "text-muted-foreground"
               )}
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.label}
             </Link>

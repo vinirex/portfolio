@@ -16,9 +16,6 @@ export function Terminal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [history]);
 
   const handleCommand = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +43,7 @@ export function Terminal() {
         break;
       case "about":
         output = "Navigating to /about...";
-        router.push("/about");
+        router.push("/#about");
         break;
       case "projects":
         output = "Navigating to /projects...";

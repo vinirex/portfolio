@@ -63,14 +63,14 @@ export default function ProjectsPage() {
                   />
                   <div className="absolute inset-0 bg-background/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                     {project.liveDemo && (
-                      <Button size="icon" variant="secondary" asChild className="rounded-full">
+                      <Button size="icon" variant="secondary" className="rounded-full">
                         <Link href={project.liveDemo} target="_blank">
                           <ExternalLink className="w-4 h-4" />
                         </Link>
                       </Button>
                     )}
                     {project.githubUrl && (
-                      <Button size="icon" variant="secondary" asChild className="rounded-full">
+                      <Button size="icon" variant="secondary" className="rounded-full">
                         <Link href={project.githubUrl} target="_blank">
                           <FaGithub className="w-4 h-4" />
                         </Link>
@@ -103,9 +103,9 @@ export default function ProjectsPage() {
                   </p>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild variant="ghost" className="w-full group/btn">
-                    <Link href={`/projects/${project.slug}`}>
-                      Read Case Study 
+                  <Button variant="ghost" className="w-full group/btn">
+                    <Link href={`/projects/${project.slug}`} className="inline-flex items-center justify-center w-full">
+                      <span>Read Case Study</span>
                       <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
