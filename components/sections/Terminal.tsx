@@ -63,7 +63,12 @@ export function Terminal() {
         break;
       case "resume":
         output = t("terminal.downloadingResume");
-        window.open("/resume.pdf", "_blank");
+        const pdfPath = locale === "pt" ? "/curriculo.pdf" : "/resume.pdf";
+        const link = document.createElement("a");
+        link.href = pdfPath;
+        link.download = locale === "pt" ? "curriculo.pdf" : "resume.pdf";
+        link.target = "_blank";
+        link.click();
         break;
       case "github":
         output = t("terminal.openingGitHub");

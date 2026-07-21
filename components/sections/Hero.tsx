@@ -133,11 +133,17 @@ export function Hero() {
                 {t("hero.projects")} <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <Link href="/resume.pdf" target="_blank" className="rounded-full">
+            <a 
+              href={locale === "pt" ? "/curriculo.pdf" : "/resume.pdf"} 
+              download 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="rounded-full"
+            >
               <Button variant="outline" size="lg" className="rounded-full w-full sm:w-auto">
                 {t("hero.cv")} <Download className="ml-2 w-4 h-4" />
               </Button>
-            </Link>
+            </a>
             <Link href={`/${locale}/contact`} className="rounded-full">
               <Button variant="ghost" size="lg" className="rounded-full w-full sm:w-auto">
                 {t("hero.contact")} <Mail className="ml-2 w-4 h-4" />
