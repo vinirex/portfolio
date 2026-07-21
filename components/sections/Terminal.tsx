@@ -66,11 +66,11 @@ export function Terminal() {
         break;
       case "github":
         output = "Opening GitHub...";
-        window.open("https://github.com", "_blank");
+        window.open("https://github.com/vinirex", "_blank");
         break;
       case "linkedin":
         output = "Opening LinkedIn...";
-        window.open("https://linkedin.com", "_blank");
+        window.open("https://www.linkedin.com/in/-vini-silva/", "_blank");
         break;
       case "clear":
         setHistory([]);

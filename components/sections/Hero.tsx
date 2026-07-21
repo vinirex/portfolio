@@ -42,10 +42,10 @@ export function Hero() {
             },
             particles: {
               color: {
-                value: "#3B82F6",
+                value: "#347df3",
               },
               links: {
-                color: "#3B82F6",
+                color: "#ff6200",
                 distance: 150,
                 enable: true,
                 opacity: 0.2,
@@ -73,7 +73,7 @@ export function Hero() {
                 value: 0.3,
               },
               shape: {
-                type: "circle",
+                type: "triangle",
               },
               size: {
                 value: { min: 1, max: 3 },
@@ -100,7 +100,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
           >
-            Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Vinicius</span>
+            Hi, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Vinicius S.</span>
             <br />
             Software Engineer
           </motion.h1>
@@ -122,21 +122,21 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/projects">
-                View Projects <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full">
-              <Link href="/resume.pdf" target="_blank">
-                Download Resume <Download className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="ghost" size="lg" className="rounded-full">
-              <Link href="/contact">
+            <Link href="/projects" className="rounded-full">
+              <Button size="lg" className="rounded-full w-full sm:w-auto">
+                Projects <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+            <Link href="/resume.pdf" target="_blank" className="rounded-full">
+              <Button variant="outline" size="lg" className="rounded-full w-full sm:w-auto">
+                Download CV <Download className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+            <Link href="/contact" className="rounded-full">
+              <Button variant="ghost" size="lg" className="rounded-full w-full sm:w-auto">
                 Contact Me <Mail className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>

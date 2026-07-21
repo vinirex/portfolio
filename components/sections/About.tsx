@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { skills } from "@/data/skills";
-import GitHubCalendar from "react-github-calendar";
+import { GitHubCalendar } from "react-github-calendar";
 
 export default function AboutPage() {
   return (
@@ -16,7 +16,7 @@ export default function AboutPage() {
         <h1 className="text-4xl md:text-5xl font-bold mb-6">About Me</h1>
         <div className="prose prose-invert max-w-none text-lg text-muted-foreground leading-relaxed">
           <p>
-            Hello! I&apos;m Vinicius, a software engineer with a passion for building scalable, high-performance web applications. I enjoy blending logic and design to create intuitive user experiences.
+            Hello! I&apos;m a software engineer with a passion for building scalable, high-performance web applications. I enjoy blending logic and design to create intuitive user experiences.
           </p>
           <p>
             My journey into software development started with a curiosity for how things work on the internet. Fast forward to today, I have had the privilege of working on various projects, ranging from small business websites to enterprise-level microservices.
