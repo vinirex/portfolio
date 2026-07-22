@@ -4,21 +4,10 @@ import { motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, PhoneCallIcon, Send } from "lucide-react";
+import { Mail, MapPin} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { getTranslation, type Locale } from "@/lib/i18n";
-import { PiPhoneCallThin, PiWhatsappLogo } from "react-icons/pi";
+import { PiWhatsappLogo } from "react-icons/pi";
 
 export default function ContactPage() {
   const pathname = usePathname();
