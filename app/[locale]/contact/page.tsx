@@ -15,9 +15,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, PhoneCallIcon, Send } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { getTranslation, type Locale } from "@/lib/i18n";
+import { PiPhoneCallThin, PiWhatsappLogo } from "react-icons/pi";
 
 export default function ContactPage() {
   const pathname = usePathname();
@@ -66,7 +67,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-lg">{t("contact.email")}</h3>
-                <p className="text-muted-foreground">contact@vinicius.dev</p>
+                <p className="text-muted-foreground">vinirex007@gmail.com</p>
               </div>
             </div>
             
@@ -79,77 +80,21 @@ export default function ContactPage() {
                 <p className="text-muted-foreground">{t("contact.locationValue")}</p>
               </div>
             </div>
+            <div className="flex items-start gap-4">
+              <div className="bg-primary/10 p-3 rounded-lg text-primary">
+                <PiWhatsappLogo className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">{t("contact.phone")}</h3>
+                <p className="text-muted-foreground">{t("contact.phoneValue")}</p>
+              </div>
+            </div>
           </div>
 
-          <div className="lg:col-span-2 bg-card border border-border p-8 rounded-xl shadow-sm">
-            <Form form={form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("contact.name")}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t("contact.namePlaceholder")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("contact.emailLabel")}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={t("contact.emailPlaceholder")} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("contact.subject")}</FormLabel>
-                      <FormControl>
-                        <Input placeholder={t("contact.subjectPlaceholder")} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+          
 
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("contact.message")}</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder={t("contact.messagePlaceholder")} 
-                          className="min-h-[150px]"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <Button type="submit" className="w-full sm:w-auto">
-                  {t("contact.submit")} <Send className="ml-2 w-4 h-4" />
-                </Button>
-              </form>
-            </Form>
+          <div className="lg:col-span-2 bg-card border border-border p-8 rounded-xl shadow-sm">
+            
           </div>
         </div>
       </motion.div>
