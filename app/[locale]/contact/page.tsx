@@ -29,14 +29,14 @@ export default function ContactPage() {
       message: "",
     },
   });
-
+/* 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     // Here you would typically send the data to an API route or email service (e.g. Resend, EmailJS)
     alert(t("contact.success"));
     form.reset();
   }
-
+ */
   return (
     <div className="container mx-auto px-4 py-20 max-w-5xl">
       <motion.div
@@ -56,7 +56,8 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-lg">{t("contact.email")}</h3>
-                <p className="text-muted-foreground">viniciuspereirasprofissional@gmail.com</p>
+                <p className="text-muted-foreground">viniciuspereirasprofissional@gmail.com
+</p>
               </div>
             </div>
             

@@ -129,8 +129,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-roboto-slab, ui-serif, Georgia, 'Times New Roman', serif);
   }
-  html {
-    @apply font-sans;
-  }
+  /* Font is provided by next/font in layout.tsx via the --font-roboto-slab variable */
 }
