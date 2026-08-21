@@ -56,7 +56,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-lg">{t("contact.email")}</h3>
-                <p className="text-muted-foreground">vinirex007@gmail.com</p>
+                <p className="text-muted-foreground">viniciuspereirasprofissional@gmail.com</p>
               </div>
             </div>
             

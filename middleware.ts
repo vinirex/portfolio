@@ -24,7 +24,14 @@ export function middleware(request: NextRequest) {
   }
 
   // Redirect if there is no locale
-  request.nextUrl.pathname = `/${defaultLocale}${pathname}`;
+  // Detect country from the request (available on platforms like Vercel)
+  const country = (request as NextRequest & { geo?: { country?: string } }).geo?.country;
+
+  // If IP is from Brazil use Portuguese, otherwise use English.
+  // When geo is undefined (local dev) fall back to defaultLocale.
+  const detectedLocale = country == null ? defaultLocale : country === "BR" ? "pt" : "en";
+
+  request.nextUrl.pathname = `/${detectedLocale}${pathname}`;
   return NextResponse.redirect(request.nextUrl);
 }
 
