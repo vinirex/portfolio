@@ -6,20 +6,26 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
+import { getTranslation, type Locale } from "@/lib/i18n";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return { title: "Not Found" };
-  return { title: `${post.title} | Vinicius.dev`, description: post.excerpt };
+  return {
+    title: `${post.title} | Vinicius Silva`,
+    description: post.excerpt,
+  };
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale: rawLocale, slug } = await params;
+  const locale = (rawLocale === "pt" ? "pt" : "en") as Locale;
+  const t = (key: string) => getTranslation(locale, key);
   const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
@@ -28,8 +34,11 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article className="container mx-auto px-4 py-20 max-w-3xl">
-      <Link href="/blog" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8 transition-colors">
-        <ArrowLeft className="mr-2 w-4 h-4" /> Back to Blog
+      <Link
+        href={`/${locale}/blog`}
+        className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8 transition-colors"
+      >
+        <ArrowLeft className="mr-2 w-4 h-4" /> {t("blog.back")}
       </Link>
 
       <header className="mb-12">

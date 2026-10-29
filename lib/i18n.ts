@@ -17,71 +17,64 @@ export const translations = {
     hero: {
       badge: "Available for new opportunities",
       intro: "Hi, I'm",
-      role: "Software Engineer",
-      description: "Full Stack Developer passionate about building beautiful, scalable, and production-ready applications.",
-      highlight: "Specialized in",
+      role: "Back-end Developer | Python, React, C# .NET",
+      description:
+        "Systems Analyst at Datamar and Software Engineering student at FIAP, experienced in connecting software development, process automation, and data analysis.",
+      highlight: "Working with",
+      and: "and",
       projects: "Projects",
       cv: "Download CV",
       contact: "Contact Me",
     },
     about: {
       title: "About Me",
-      paragraph1: "Hello! I'm a software engineer with a passion for building scalable, high-performance web applications. I enjoy blending logic and design to create intuitive user experiences.",
-      paragraph2: "My journey into software development started with a curiosity for how things work on the internet. Fast forward to today, I have had the privilege of working on various projects, ranging from small business websites to enterprise-level microservices.",
-      paragraph3: "When I'm not coding, you can usually find me reading about the latest tech trends, contributing to open-source, or experimenting with new frameworks. My main focus these days is mastering machine learning integration in full-stack applications.",
-      mindset: "Technical Mindset",
+      paragraph1:
+        "I am a Systems Analyst at Datamar and a Software Engineering student at FIAP (expected graduation in June 2027), focused on back-end development, process automation, and data integration.",
+      paragraph2:
+        "At Datamar, I work across the corporate software development lifecycle—building and maintaining applications, automating operational workflows, and integrating systems and databases using Python, C#, .NET, VB.NET, and SQL Server. Previously at Datamar, I worked with Business Intelligence, foreign-trade data analysis and validation, automated reporting, and KPI validation.",
+      paragraph3:
+        "With an American High School Diploma from Pan American Christian Academy and prior experience in a 100% bilingual environment at Chapel School, I communicate fluently in English and combine structured analytical thinking with practical problem-solving.",
+      mindset: "Technical Skills & Languages",
       contributions: "GitHub Contributions",
     },
     contact: {
       title: "Get in Touch",
-      description: "I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!",
+      description:
+        "I'm currently available for new opportunities. Whether you have a question, a role in mind, or just want to connect, feel free to reach out through any of the channels below.",
       email: "Email",
       location: "Location",
-      locationValue: "Brazil / Remote",
-      phone: "Phone",
+      locationValue: "São Paulo, SP, Brazil",
+      phone: "WhatsApp / Phone",
       phoneValue: "+55 (11) 93944-8410",
-      name: "Name",
-      namePlaceholder: "John Doe",
-      emailLabel: "Email",
-      emailPlaceholder: "john@example.com",
-      subject: "Subject",
-      subjectPlaceholder: "Job Opportunity",
-      message: "Message",
-      messagePlaceholder: "Your message here...",
-      submit: "Send Message",
-      success: "Message sent successfully! (Mocked)",
-      validations: {
-        name: "Name must be at least 2 characters.",
-        email: "Invalid email address.",
-        subject: "Subject must be at least 5 characters.",
-        message: "Message must be at least 10 characters.",
-      },
+      linkedin: "LinkedIn",
+      github: "GitHub",
     },
     experience: {
       title: "Experience & Education",
     },
     certificates: {
       title: "Certificates",
-      description: "Continuous learning is essential in software engineering. Here are some of the professional certifications and courses I have completed.",
+      description:
+        "Continuous learning is essential in software engineering. Here are the verified certifications and courses I have completed.",
+      issued: "Issued:",
       button: "View Credential",
     },
     blog: {
       title: "Blog",
-      description: "Thoughts, learnings, and tutorials about software development, system architecture, and tech trends.",
+      description:
+        "Thoughts, learnings, and tutorials about software development, system architecture, and tech trends.",
+      back: "Back to Blog",
     },
     projects: {
       title: "Projects",
-      description: "Here are some of the projects I've worked on. From full-stack web applications to machine learning models, I love building things that solve real-world problems.",
+      description:
+        "Academic and practical projects combining software development, statistical data analysis, and distributed web solutions.",
       readCaseStudy: "Read Case Study",
       category: {
         all: "All",
-        frontend: "Frontend",
-        backend: "Backend",
-        fullstack: "Full Stack",
         python: "Python",
-        react: "React",
-        dotnet: ".NET",
-        machinelearning: "Machine Learning",
+        data: "Data Analysis",
+        web: "Web",
       },
     },
     projectDetail: {
@@ -89,10 +82,10 @@ export const translations = {
       liveDemo: "Live Demo",
       sourceCode: "Source Code",
       overview: "Overview",
-      problem: "The Problem",
-      architecture: "Architecture & Implementation",
-      challenges: "Challenges & Solutions",
-      results: "Results & Lessons Learned",
+      problem: "Context & Problem",
+      architecture: "Implementation",
+      challenges: "Challenges & Focus",
+      results: "Outcomes & Learnings",
       category: "Category",
       duration: "Duration",
     },
@@ -126,6 +119,7 @@ export const translations = {
     footer: {
       rights: "All rights reserved.",
       builtWith: "Built with",
+      and: "&",
     },
   },
   pt: {
@@ -142,71 +136,64 @@ export const translations = {
     hero: {
       badge: "Disponível para novas oportunidades",
       intro: "Olá, sou",
-      role: "Engenheiro de Software",
-      description: "Desenvolvedor Full Stack apaixonado por construir aplicações bonitas, escaláveis e prontas para produção.",
-      highlight: "Especializado em",
+      role: "Desenvolvedor Back-end | Python, React, C# .NET",
+      description:
+        "Analista de Sistemas na Datamar e estudante de Engenharia de Software na FIAP, com experiência conectando desenvolvimento de software, automação de processos e análise de dados.",
+      highlight: "Atuando com",
+      and: "e",
       projects: "Projetos",
       cv: "Currículo",
       contact: "Fale Comigo",
     },
     about: {
       title: "Sobre Mim",
-      paragraph1: "Olá! Sou um engenheiro de software apaixonado por criar aplicações web escaláveis e de alto desempenho. Gosto de unir lógica e design para criar experiências intuitivas.",
-      paragraph2: "Minha jornada no desenvolvimento de software começou com a curiosidade sobre como as coisas funcionam na internet. Hoje, tive a oportunidade de trabalhar em diversos projetos, desde pequenos sites para negócios até microsserviços de nível corporativo.",
-      paragraph3: "Quando não estou programando, normalmente estou lendo sobre as últimas tendências de tecnologia, contribuindo com projetos open-source ou experimentando novos frameworks. Minha principal meta atualmente é dominar a integração de machine learning em aplicações full-stack.",
-      mindset: "Tecnologias",
+      paragraph1:
+        "Sou Analista de Sistemas na Datamar e estudante de Engenharia de Software na FIAP (conclusão prevista para junho de 2027), com foco em desenvolvimento back-end, automação de processos e integração de dados.",
+      paragraph2:
+        "Na Datamar, atuo no ciclo de desenvolvimento e manutenção de sistemas corporativos, automação de fluxos operacionais e integração de dados e sistemas utilizando Python, C#, .NET, VB.NET e SQL Server. Anteriormente na empresa, atuei com Business Intelligence (BI), análise e validação de dados de comércio exterior, relatórios automatizados e validação de KPIs.",
+      paragraph3:
+        "Com formação no Ensino Médio americano (American High School Diploma) pela Pan American Christian Academy e experiência prévia em ambiente 100% bilíngue na Chapel School, possuo inglês fluente e combino raciocínio lógico estruturado com resolução prática de problemas.",
+      mindset: "Conhecimentos Técnicos & Idiomas",
       contributions: "Contribuições no GitHub",
     },
     contact: {
       title: "Entre em Contato",
-      description: "Atualmente estou procurando novas oportunidades. Se você tiver uma pergunta ou apenas quiser dizer oi, vou fazer o possível para responder.",
+      description:
+        "Atualmente estou disponível para novas oportunidades. Caso tenha alguma dúvida, oportunidade ou queira conversar, entre em contato por qualquer um dos canais abaixo.",
       email: "E-mail",
       location: "Localização",
-      locationValue: "Brasil / Remoto",
-      phone: "Telefone",
+      locationValue: "São Paulo, SP, Brasil",
+      phone: "WhatsApp / Telefone",
       phoneValue: "+55 (11) 93944-8410",
-      name: "Nome",
-      namePlaceholder: "João Silva",
-      emailLabel: "E-mail",
-      emailPlaceholder: "joao@exemplo.com",
-      subject: "Assunto",
-      subjectPlaceholder: "Oportunidade de Trabalho",
-      message: "Mensagem",
-      messagePlaceholder: "Sua mensagem aqui...",
-      submit: "Enviar Mensagem",
-      success: "Mensagem enviada com sucesso! (Simulado)",
-      validations: {
-        name: "O nome deve ter pelo menos 2 caracteres.",
-        email: "Endereço de e-mail inválido.",
-        subject: "O assunto deve ter pelo menos 5 caracteres.",
-        message: "A mensagem deve ter pelo menos 10 caracteres.",
-      },
+      linkedin: "LinkedIn",
+      github: "GitHub",
     },
     experience: {
       title: "Experiência & Educação",
     },
     certificates: {
       title: "Certificados",
-      description: "Aprendizado contínuo é essencial em engenharia de software. Aqui estão algumas das certificações e cursos profissionais que concluí.",
+      description:
+        "O aprendizado contínuo é essencial na engenharia de software. Aqui estão algumas das certificações e cursos que concluí.",
+      issued: "Emitido em:",
       button: "Ver Credencial",
     },
     blog: {
       title: "Blog",
-      description: "Pensamentos, aprendizados e tutoriais sobre desenvolvimento de software, arquitetura de sistemas e tendências de tecnologia.",
+      description:
+        "Pensamentos, aprendizados e tutoriais sobre desenvolvimento de software, arquitetura de sistemas e tendências de tecnologia.",
+      back: "Voltar para o Blog",
     },
     projects: {
       title: "Projetos",
-      description: "Aqui estão alguns dos projetos em que trabalhei. Desde aplicações full-stack até modelos de machine learning, adoro construir soluções que resolvem problemas reais.",
+      description:
+        "Projetos acadêmicos e práticos unindo desenvolvimento de software, análise estatística de dados e soluções web distribuídas.",
       readCaseStudy: "Ler Estudo de Caso",
       category: {
         all: "Todos",
-        frontend: "Frontend",
-        backend: "Backend",
-        fullstack: "Full Stack",
         python: "Python",
-        react: "React",
-        dotnet: ".NET",
-        machinelearning: "Machine Learning",
+        data: "Análise de Dados",
+        web: "Web",
       },
     },
     projectDetail: {
@@ -214,10 +201,10 @@ export const translations = {
       liveDemo: "Demonstração ao Vivo",
       sourceCode: "Código Fonte",
       overview: "Visão Geral",
-      problem: "O Problema",
-      architecture: "Arquitetura & Implementação",
-      challenges: "Desafios & Soluções",
-      results: "Resultados & Lições Aprendidas",
+      problem: "Contexto & Problema",
+      architecture: "Implementação",
+      challenges: "Desafios & Foco",
+      results: "Resultados & Aprendizados",
       category: "Categoria",
       duration: "Duração",
     },
@@ -251,6 +238,7 @@ export const translations = {
     footer: {
       rights: "Todos os direitos reservados.",
       builtWith: "Construído com",
+      and: "e",
     },
   },
 } as const;
@@ -260,7 +248,7 @@ export function getTranslation(locale: Locale, key: string) {
   const fallbackData = translations[defaultLocale] as Record<string, unknown>;
 
   const parts = key.split(".");
-  
+
   let value: unknown = localeData;
   for (const part of parts) {
     value = (value as Record<string, unknown> | undefined)?.[part];

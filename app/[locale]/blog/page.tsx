@@ -20,8 +20,12 @@ export default function BlogPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">{t("blog.title")}</h1>
-        <p className="text-muted-foreground text-lg mb-12">{t("blog.description")}</p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          {t("blog.title")}
+        </h1>
+        <p className="text-muted-foreground text-lg mb-12">
+          {t("blog.description")}
+        </p>
 
         <div className="space-y-8">
           {blogPosts.map((post, index) => (
@@ -31,7 +35,7 @@ export default function BlogPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Link href={`/blog/${post.slug}`}>
+              <Link href={`/${locale}/blog/${post.slug}`}>
                 <Card className="hover:border-primary/50 transition-colors group border-border/50">
                   <CardHeader>
                     <div className="flex flex-wrap gap-2 mb-3">
@@ -54,9 +58,7 @@ export default function BlogPage() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">
-                      {post.excerpt}
-                    </p>
+                    <p className="text-muted-foreground">{post.excerpt}</p>
                   </CardContent>
                 </Card>
               </Link>

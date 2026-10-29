@@ -5,16 +5,18 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 import { CommandMenu } from "@/components/shared/CommandMenu";
+
 const robotoSlab = Roboto_Slab({
   variable: "--font-roboto-slab",
   subsets: ["latin"],
   weight: ["300", "400", "700"],
-  display: 'swap',
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Vinicius",
-  description: "Vinicius Silva's personal portfolio website showcasing his projects, experience, and skills in web development.",
+  title: "Vinicius Silva | Back-end Developer",
+  description:
+    "Vinicius Silva — Systems Analyst at Datamar and Software Engineering student at FIAP. Portfolio showcasing back-end development, process automation, and data analysis with Python, React, C# .NET, and SQL.",
 };
 
 export default async function RootLayout({
@@ -27,9 +29,7 @@ export default async function RootLayout({
   const { locale } = await params;
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${robotoSlab.variable} antialiased`}
-      >
+      <body className={`${robotoSlab.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -38,9 +38,7 @@ export default async function RootLayout({
         >
           <Navbar />
           <CommandMenu />
-          <main className="min-h-screen pt-16">
-            {children}
-          </main>
+          <main className="min-h-screen pt-16">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

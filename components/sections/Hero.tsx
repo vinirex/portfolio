@@ -99,16 +99,21 @@ export function Hero() {
             <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse"></span>
             {t("hero.badge")}
           </motion.div>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
           >
-            {t("hero.intro")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Vinicius S.</span>
+            {t("hero.intro")}{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+              Vinicius Silva
+            </span>
             <br />
-            {t("hero.role")}
+            <span className="text-2xl md:text-4xl lg:text-5xl block mt-3">
+              {t("hero.role")}
+            </span>
           </motion.h1>
 
           <motion.p
@@ -118,8 +123,13 @@ export function Hero() {
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8"
           >
             {t("hero.description")}
-            <br className="hidden md:block"/>
-            {t("hero.highlight")} <span className="text-foreground font-medium">Python</span>, <span className="text-foreground font-medium">React</span>, <span className="text-foreground font-medium">.NET</span>, and <span className="text-foreground font-medium">SQL</span>.
+            <br className="hidden md:block" />
+            {t("hero.highlight")}{" "}
+            <span className="text-foreground font-medium">Python</span>,{" "}
+            <span className="text-foreground font-medium">React</span>,{" "}
+            <span className="text-foreground font-medium">C# / .NET</span>{" "}
+            {t("hero.and")}{" "}
+            <span className="text-foreground font-medium">SQL</span>.
           </motion.p>
 
           <motion.div
@@ -133,19 +143,27 @@ export function Hero() {
                 {t("hero.projects")} <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <a 
-              href={locale === "pt" ? "/curriculo.pdf" : "/resume.pdf"} 
-              download 
-              target="_blank" 
+            <a
+              href={locale === "pt" ? "/curriculo.pdf" : "/resume.pdf"}
+              download
+              target="_blank"
               rel="noopener noreferrer"
               className="rounded-full"
             >
-              <Button variant="outline" size="lg" className="rounded-full w-full sm:w-auto">
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-full w-full sm:w-auto"
+              >
                 {t("hero.cv")} <Download className="ml-2 w-4 h-4" />
               </Button>
             </a>
             <Link href={`/${locale}/contact`} className="rounded-full">
-              <Button variant="ghost" size="lg" className="rounded-full w-full sm:w-auto">
+              <Button
+                variant="ghost"
+                size="lg"
+                className="rounded-full w-full sm:w-auto"
+              >
                 {t("hero.contact")} <Mail className="ml-2 w-4 h-4" />
               </Button>
             </Link>
