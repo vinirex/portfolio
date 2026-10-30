@@ -50,7 +50,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
       slug: "inferential-analysis-brasilian-exports",
       title: "Análise Inferencial das Exportações Brasileiras",
       thumbnail:
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
       videoPreview: "",
       liveDemo: "https://exportacao-brasileira.streamlit.app/",
       githubUrl: "https://github.com/vinirex/Analise_inferencial",
@@ -61,7 +61,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
       solution:
         "Aplicação web interativa desenvolvida em Python com Streamlit para exploração estatística e análise inferencial de dados de exportações brasileiras.",
       images: [
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
       ],
     },
     {
@@ -107,7 +107,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
       slug: "inferential-analysis-brasilian-exports",
       title: "Inferential Analysis of Brazilian Exports",
       thumbnail:
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
       videoPreview: "",
       liveDemo: "https://exportacao-brasileira.streamlit.app/",
       githubUrl: "https://github.com/vinirex/Analise_inferencial",
@@ -118,7 +118,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
       solution:
         "Interactive web application built with Python and Streamlit to explore and analyze Brazilian exports using inferential statistics.",
       images: [
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
       ],
     },
     {
