@@ -17,14 +17,19 @@ export const translations = {
     hero: {
       badge: "Available for new opportunities",
       intro: "Hi, I'm",
-      role: "Back-end Developer | Python, React, C# .NET",
+      role: "Backend Developer",
+      techLine: "Python · C#/.NET · SQL · React",
       description:
-        "Systems Analyst at Datamar and Software Engineering student at FIAP, experienced in connecting software development, process automation, and data analysis.",
-      highlight: "Working with",
-      and: "and",
+        "Systems Analyst at Datamar and Software Engineering student at FIAP, connecting software development, process automation, and data analysis.",
       projects: "Projects",
       cv: "Download CV",
       contact: "Contact Me",
+    },
+    featuredProjects: {
+      title: "Featured Projects",
+      subtitle:
+        "Selected academic and practical projects in software engineering and data analysis.",
+      viewAll: "View all projects",
     },
     about: {
       title: "About Me",
@@ -69,18 +74,17 @@ export const translations = {
       title: "Projects",
       description:
         "Academic and practical projects combining software development, statistical data analysis, and distributed web solutions.",
-      readCaseStudy: "Read Case Study",
-      category: {
-        all: "All",
-        python: "Python",
-        data: "Data Analysis",
-        web: "Web",
-      },
+      readCaseStudy: "Project Details",
+      sourceCode: "Source Code",
+      liveDemo: "Live Demo",
+      fiapNextRecognition: "FIAP NEXT Recognition",
+      linkedinPost: "LinkedIn Post",
     },
     projectDetail: {
       back: "Back to Projects",
       liveDemo: "Live Demo",
       sourceCode: "Source Code",
+      fiapNextRecognition: "FIAP NEXT Recognition",
       linkedinPost: "LinkedIn Post",
       overview: "Overview",
       problem: "Context & Problem",
@@ -137,14 +141,19 @@ export const translations = {
     hero: {
       badge: "Disponível para novas oportunidades",
       intro: "Olá, sou",
-      role: "Desenvolvedor Back-end | Python, React, C# .NET",
+      role: "Desenvolvedor Back-end",
+      techLine: "Python · C#/.NET · SQL · React",
       description:
-        "Analista de Sistemas na Datamar e estudante de Engenharia de Software na FIAP, com experiência conectando desenvolvimento de software, automação de processos e análise de dados.",
-      highlight: "Atuando com",
-      and: "e",
+        "Analista de Sistemas na Datamar e estudante de Engenharia de Software na FIAP, conectando desenvolvimento de software, automação de processos e análise de dados.",
       projects: "Projetos",
       cv: "Currículo",
       contact: "Fale Comigo",
+    },
+    featuredProjects: {
+      title: "Projetos em Destaque",
+      subtitle:
+        "Projetos acadêmicos e práticos selecionados em engenharia de software e análise de dados.",
+      viewAll: "Ver todos os projetos",
     },
     about: {
       title: "Sobre Mim",
@@ -189,18 +198,17 @@ export const translations = {
       title: "Projetos",
       description:
         "Projetos acadêmicos e práticos unindo desenvolvimento de software, análise estatística de dados e soluções web distribuídas.",
-      readCaseStudy: "Ler Estudo de Caso",
-      category: {
-        all: "Todos",
-        python: "Python",
-        data: "Análise de Dados",
-        web: "Web",
-      },
+      readCaseStudy: "Ver Detalhes",
+      sourceCode: "Código",
+      liveDemo: "Demonstração",
+      fiapNextRecognition: "Conquista no FIAP NEXT",
+      linkedinPost: "Post no LinkedIn",
     },
     projectDetail: {
       back: "Voltar para Projetos",
       liveDemo: "Demonstração ao Vivo",
-      sourceCode: "Código Fonte",
+      sourceCode: "Código",
+      fiapNextRecognition: "Conquista no FIAP NEXT",
       linkedinPost: "Post no LinkedIn",
       overview: "Visão Geral",
       problem: "Contexto & Problema",

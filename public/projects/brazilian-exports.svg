@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Inferential Analysis of Brazilian Exports">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090b" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#172554" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#1e293b" stroke-width="1" opacity="0.55" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)" />
+  <rect width="1200" height="675" fill="url(#grid)" />
+
+  <!-- Subtle statistical distribution curve & bars -->
+  <g opacity="0.22" transform="translate(680, 150)">
+    <rect x="40" y="240" width="44" height="140" rx="6" fill="#3b82f6" />
+    <rect x="104" y="180" width="44" height="200" rx="6" fill="#3b82f6" />
+    <rect x="168" y="100" width="44" height="280" rx="6" fill="#60a5fa" />
+    <rect x="232" y="145" width="44" height="235" rx="6" fill="#3b82f6" />
+    <rect x="296" y="210" width="44" height="170" rx="6" fill="#3b82f6" />
+    <rect x="360" y="270" width="44" height="110" rx="6" fill="#3b82f6" />
+    <path d="M 10 340 C 90 320, 140 90, 210 90 C 280 90, 330 290, 430 340" fill="none" stroke="#93c5fd" stroke-width="5" stroke-linecap="round" />
+  </g>
+
+  <!-- Content container -->
+  <g transform="translate(88, 130)">
+    <rect x="0" y="0" width="230" height="38" rx="19" fill="#1e3a8a" fill-opacity="0.55" stroke="#3b82f6" stroke-width="1.5" />
+    <text x="115" y="24" text-anchor="middle" fill="#93c5fd" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" font-weight="600" letter-spacing="1.2">
+      STATISTICAL ANALYSIS
+    </text>
+
+    <text x="0" y="115" fill="#ffffff" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="52" font-weight="700" letter-spacing="-0.5">
+      Brazilian Exports
+    </text>
+    <text x="0" y="180" fill="#60a5fa" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="44" font-weight="600" letter-spacing="-0.5">
+      Inferential Analysis
+    </text>
+
+    <rect x="0" y="220" width="96" height="5" rx="2.5" fill="url(#accent)" />
+
+    <text x="0" y="275" fill="#a1a1aa" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="400">
+      Análise Inferencial das Exportações Brasileiras
+    </text>
+
+    <g transform="translate(0, 335)">
+      <rect x="0" y="0" width="110" height="40" rx="8" fill="#18181b" stroke="#27272a" stroke-width="1.5" />
+      <text x="55" y="26" text-anchor="middle" fill="#e4e4e7" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="16" font-weight="600">Python</text>
+
+      <rect x="126" y="0" width="130" height="40" rx="8" fill="#18181b" stroke="#27272a" stroke-width="1.5" />
+      <text x="191" y="26" text-anchor="middle" fill="#e4e4e7" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="16" font-weight="600">Streamlit</text>
+
+      <rect x="272" y="0" width="146" height="40" rx="8" fill="#18181b" stroke="#27272a" stroke-width="1.5" />
+      <text x="345" y="26" text-anchor="middle" fill="#e4e4e7" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="16" font-weight="600">Statistics</text>
+    </g>
+  </g>
+</svg>
+

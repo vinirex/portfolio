@@ -134,8 +134,8 @@ export function Terminal() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              aria-label="Terminal command input"
               className="flex-1 bg-transparent outline-none border-none text-foreground placeholder:text-muted-foreground/50"
-              autoFocus
               spellCheck={false}
               autoComplete="off"
             />

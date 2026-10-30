@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
-import { motion } from "framer-motion";
-import { getProjects, projectCategoriesByLocale } from "@/data/projects";
+import { motion, useReducedMotion } from "framer-motion";
+import { getProjects } from "@/data/projects";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -13,162 +12,78 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { getTranslation, type Locale } from "@/lib/i18n";
 
-function renderTextWithLinks(text: string): ReactNode {
-  const parts = text.split(/(https?:\/\/[^\s)]+)/g);
-  return parts.map((part, index) => {
-    if (part.match(/^https?:\/\//)) {
-      return (
-        <a
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-primary underline hover:opacity-80 break-all"
-        >
-          {part}
-        </a>
-      );
-    }
-    return part;
-  });
-}
-
 export default function ProjectsPage() {
   const pathname = usePathname();
   const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
   const t = (key: string) => getTranslation(locale, key);
-
-  const categories = projectCategoriesByLocale[locale];
-  const allLabel = categories[0];
-  const [filter, setFilter] = useState(allLabel);
+  const shouldReduceMotion = useReducedMotion();
 
   const projectList = getProjects(locale);
-  const activeFilter = categories.includes(filter) ? filter : allLabel;
-
-  const filteredProjects = projectList.filter((project) =>
-    activeFilter === allLabel
-      ? true
-      : project.category === activeFilter ||
-        project.technologies.includes(activeFilter)
-  );
 
   return (
-    <div className="container mx-auto px-4 py-20">
+    <div className="container mx-auto px-4 py-20 max-w-6xl">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
           {t("projects.title")}
         </h1>
-        <p className="text-muted-foreground text-lg mb-12 max-w-3xl">
+        <p className="text-muted-foreground text-lg mb-12 max-w-2xl">
           {t("projects.description")}
         </p>
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={activeFilter === category ? "default" : "outline"}
-              size="sm"
-              onClick={() => setFilter(category)}
-              className="rounded-full"
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-
         {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => {
-            const hasLinks = Boolean(
-              project.liveDemo || project.githubUrl || project.linkedinUrl
-            );
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projectList.map((project, index) => {
+            const linkedinLabel = project.linkedinLabelKey
+              ? t(project.linkedinLabelKey)
+              : t("projects.linkedinPost");
+
             return (
               <motion.div
                 key={project.slug}
-                initial={{ opacity: 0, y: 20 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{
+                  duration: shouldReduceMotion ? 0 : 0.45,
+                  delay: shouldReduceMotion ? 0 : index * 0.08,
+                }}
               >
-                <Card className="h-full flex flex-col group overflow-hidden border-border/50 hover:border-primary/50 transition-colors">
-                  <div className="relative h-48 w-full overflow-hidden bg-muted">
+                <Card className="h-full flex flex-col overflow-hidden border-border/60 hover:border-primary/50 transition-colors pt-0">
+                  <Link
+                    href={`/${locale}/projects/${project.slug}`}
+                    aria-label={`${t("projects.readCaseStudy")}: ${project.title}`}
+                    className="relative aspect-video w-full overflow-hidden bg-muted border-b border-border/50 block"
+                  >
                     <Image
                       src={project.thumbnail}
                       alt={project.title}
                       fill
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover object-top w-full h-full hover:scale-[1.02] transition-transform duration-300"
                     />
-                    {hasLinks && (
-                      <div className="absolute inset-0 bg-background/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                        {project.liveDemo && (
-                          <Button
-                            asChild
-                            size="icon"
-                            variant="secondary"
-                            className="rounded-full"
-                          >
-                            <Link
-                              href={project.liveDemo}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <ExternalLink className="w-4 h-4" />
-                            </Link>
-                          </Button>
-                        )}
-                        {project.githubUrl && (
-                          <Button
-                            asChild
-                            size="icon"
-                            variant="secondary"
-                            className="rounded-full"
-                          >
-                            <Link
-                              href={project.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <FaGithub className="w-4 h-4" />
-                            </Link>
-                          </Button>
-                        )}
-                        {project.linkedinUrl && (
-                          <Button
-                            asChild
-                            size="icon"
-                            variant="secondary"
-                            className="rounded-full"
-                          >
-                            <Link
-                              href={project.linkedinUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <FaLinkedin className="w-4 h-4" />
-                            </Link>
-                          </Button>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  <CardHeader>
-                    <div className="flex justify-between items-start mb-2">
-                      <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                  </Link>
+
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-xl font-semibold leading-snug">
+                      <Link
+                        href={`/${locale}/projects/${project.slug}`}
+                        className="hover:text-primary transition-colors"
+                      >
                         {project.title}
-                      </CardTitle>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {project.technologies.slice(0, 3).map((tech) => (
+                      </Link>
+                    </CardTitle>
+                    <div className="flex flex-wrap gap-1.5 mt-2">
+                      {project.technologies.map((tech) => (
                         <Badge
                           key={tech}
                           variant="secondary"
@@ -177,28 +92,79 @@ export default function ProjectsPage() {
                           {tech}
                         </Badge>
                       ))}
-                      {project.technologies.length > 3 && (
-                        <Badge variant="outline" className="text-xs">
-                          +{project.technologies.length - 3}
-                        </Badge>
-                      )}
                     </div>
                   </CardHeader>
-                  <CardContent className="flex-grow">
-                    <p className="text-muted-foreground line-clamp-4">
-                      {renderTextWithLinks(project.solution)}
+
+                  <CardContent className="flex-grow pt-1">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {project.solution}
                     </p>
                   </CardContent>
-                  <CardFooter>
-                    <Button asChild variant="ghost" className="w-full group/btn">
-                      <Link
-                        href={`/${locale}/projects/${project.slug}`}
-                        className="inline-flex items-center justify-center w-full"
-                      >
-                        <span>{t("projects.readCaseStudy")}</span>
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </Link>
-                    </Button>
+
+                  <CardFooter className="flex flex-col items-stretch gap-3 pt-3 border-t border-border/40">
+                    {(project.githubUrl ||
+                      project.liveDemo ||
+                      project.linkedinUrl) && (
+                      <div className="flex flex-wrap items-center gap-2">
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${t("projects.sourceCode")} — ${project.title}`}
+                            className={cn(
+                              buttonVariants({ variant: "outline", size: "sm" }),
+                              "gap-1.5"
+                            )}
+                          >
+                            <FaGithub className="w-3.5 h-3.5" />
+                            <span>{t("projects.sourceCode")}</span>
+                          </a>
+                        )}
+                        {project.liveDemo && (
+                          <a
+                            href={project.liveDemo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${t("projects.liveDemo")} — ${project.title}`}
+                            className={cn(
+                              buttonVariants({ variant: "outline", size: "sm" }),
+                              "gap-1.5"
+                            )}
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span>{t("projects.liveDemo")}</span>
+                          </a>
+                        )}
+                        {project.linkedinUrl && (
+                          <a
+                            href={project.linkedinUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${linkedinLabel} — ${project.title}`}
+                            className={cn(
+                              buttonVariants({ variant: "outline", size: "sm" }),
+                              "gap-1.5"
+                            )}
+                          >
+                            <FaLinkedin className="w-3.5 h-3.5" />
+                            <span>{linkedinLabel}</span>
+                          </a>
+                        )}
+                      </div>
+                    )}
+
+                    <Link
+                      href={`/${locale}/projects/${project.slug}`}
+                      aria-label={`${t("projects.readCaseStudy")}: ${project.title}`}
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "sm" }),
+                        "w-full justify-between group/btn"
+                      )}
+                    >
+                      <span>{t("projects.readCaseStudy")}</span>
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
+                    </Link>
                   </CardFooter>
                 </Card>
               </motion.div>

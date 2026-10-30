@@ -7,6 +7,53 @@ import { usePathname } from "next/navigation";
 import { getTranslation, type Locale } from "@/lib/i18n";
 import { Badge } from "@/components/ui/badge";
 
+const calendarLabelsByLocale = {
+  pt: {
+    months: [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ],
+    weekdays: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+    totalCount: "{{count}} contribuições no último ano",
+    legend: {
+      less: "Menos",
+      more: "Mais",
+    },
+  },
+  en: {
+    months: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    totalCount: "{{count}} contributions in the last year",
+    legend: {
+      less: "Less",
+      more: "More",
+    },
+  },
+};
+
 export default function AboutPage() {
   const pathname = usePathname();
   const locale = (pathname.split("/")[1] === "pt" ? "pt" : "en") as Locale;
@@ -82,10 +129,15 @@ export default function AboutPage() {
         className="mt-20"
       >
         <h2 className="text-3xl font-bold mb-8">{t("about.contributions")}</h2>
-        <div className="p-8 border border-border bg-card rounded-xl overflow-x-auto flex justify-center">
+        <div
+          role="region"
+          aria-label={t("about.contributions")}
+          className="p-8 border border-border bg-card rounded-xl overflow-x-auto flex justify-center"
+        >
           <GitHubCalendar
             username="vinirex"
             colorScheme="dark"
+            labels={calendarLabelsByLocale[locale]}
             theme={{
               light: ["#18181b", "#3B82F6"],
               dark: ["#18181b", "#1d4ed8", "#2563eb", "#3b82f6", "#60a5fa"],

@@ -1,38 +1,18 @@
 import { getProjects } from "@/data/projects";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ExternalLink, ArrowLeft } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 import { getTranslation, type Locale } from "@/lib/i18n";
-import type { ReactNode } from "react";
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
-
-function renderTextWithLinks(text: string): ReactNode {
-  const parts = text.split(/(https?:\/\/[^\s)]+)/g);
-  return parts.map((part, index) => {
-    if (part.match(/^https?:\/\//)) {
-      return (
-        <a
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-primary underline hover:opacity-80 break-all"
-        >
-          {part}
-        </a>
-      );
-    }
-    return part;
-  });
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, slug } = await params;
@@ -55,6 +35,10 @@ export default async function ProjectCaseStudy({ params }: Props) {
     notFound();
   }
 
+  const linkedinLabel = project.linkedinLabelKey
+    ? t(project.linkedinLabelKey)
+    : t("projectDetail.linkedinPost");
+
   return (
     <article className="container mx-auto px-4 py-20 max-w-4xl">
       <Link
@@ -64,8 +48,10 @@ export default async function ProjectCaseStudy({ params }: Props) {
         <ArrowLeft className="mr-2 w-4 h-4" /> {t("projectDetail.back")}
       </Link>
 
-      <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">{project.title}</h1>
+      <header className="mb-10">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
+          {project.title}
+        </h1>
         <div className="flex flex-wrap gap-2 mb-6">
           {project.technologies.map((tech) => (
             <Badge key={tech} variant="secondary">
@@ -74,45 +60,51 @@ export default async function ProjectCaseStudy({ params }: Props) {
           ))}
         </div>
         {(project.liveDemo || project.githubUrl || project.linkedinUrl) && (
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3">
             {project.liveDemo && (
-              <Button asChild>
-                <Link
-                  href={project.liveDemo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center"
-                >
-                  <ExternalLink className="mr-2 w-4 h-4" />
-                  <span>{t("projectDetail.liveDemo")}</span>
-                </Link>
-              </Button>
+              <a
+                href={project.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${t("projectDetail.liveDemo")} — ${project.title}`}
+                className={cn(
+                  buttonVariants({ variant: "default", size: "lg" }),
+                  "gap-2"
+                )}
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>{t("projectDetail.liveDemo")}</span>
+              </a>
             )}
             {project.githubUrl && (
-              <Button asChild variant="outline">
-                <Link
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center"
-                >
-                  <FaGithub className="mr-2 w-4 h-4" />
-                  <span>{t("projectDetail.sourceCode")}</span>
-                </Link>
-              </Button>
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${t("projectDetail.sourceCode")} — ${project.title}`}
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "gap-2"
+                )}
+              >
+                <FaGithub className="w-4 h-4" />
+                <span>{t("projectDetail.sourceCode")}</span>
+              </a>
             )}
             {project.linkedinUrl && (
-              <Button asChild variant="outline">
-                <Link
-                  href={project.linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center"
-                >
-                  <FaLinkedin className="mr-2 w-4 h-4" />
-                  <span>{t("projectDetail.linkedinPost")}</span>
-                </Link>
-              </Button>
+              <a
+                href={project.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${linkedinLabel} — ${project.title}`}
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "gap-2"
+                )}
+              >
+                <FaLinkedin className="w-4 h-4" />
+                <span>{linkedinLabel}</span>
+              </a>
             )}
           </div>
         )}
@@ -123,7 +115,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
           src={project.thumbnail}
           alt={project.title}
           fill
-          className="object-cover"
+          sizes="(max-width: 1024px) 100vw, 896px"
+          className="object-cover object-top"
         />
       </div>
 
@@ -131,53 +124,59 @@ export default async function ProjectCaseStudy({ params }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="md:col-span-2 space-y-8">
             <section>
-              <h2 className="text-2xl font-bold mb-4">
+              <h2 className="text-2xl font-bold mb-3">
                 {t("projectDetail.overview")}
               </h2>
-              <p className="text-muted-foreground">
-                {renderTextWithLinks(project.solution)}
+              <p className="text-muted-foreground leading-relaxed">
+                {project.solution}
               </p>
             </section>
 
             {project.problem && (
               <section>
-                <h2 className="text-2xl font-bold mb-4">
+                <h2 className="text-2xl font-bold mb-3">
                   {t("projectDetail.problem")}
                 </h2>
-                <p className="text-muted-foreground">
-                  {renderTextWithLinks(project.problem)}
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.problem}
                 </p>
               </section>
             )}
 
             {project.architecture && (
               <section>
-                <h2 className="text-2xl font-bold mb-4">
+                <h2 className="text-2xl font-bold mb-3">
                   {t("projectDetail.architecture")}
                 </h2>
-                <p className="text-muted-foreground">{project.architecture}</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.architecture}
+                </p>
               </section>
             )}
 
             {project.challenges && (
               <section>
-                <h2 className="text-2xl font-bold mb-4">
+                <h2 className="text-2xl font-bold mb-3">
                   {t("projectDetail.challenges")}
                 </h2>
-                <p className="text-muted-foreground">{project.challenges}</p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {project.challenges}
+                </p>
               </section>
             )}
 
             {(project.results || project.lessonsLearned) && (
               <section>
-                <h2 className="text-2xl font-bold mb-4">
+                <h2 className="text-2xl font-bold mb-3">
                   {t("projectDetail.results")}
                 </h2>
                 {project.results && (
-                  <p className="text-muted-foreground">{project.results}</p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {project.results}
+                  </p>
                 )}
                 {project.lessonsLearned && (
-                  <p className="text-muted-foreground mt-4">
+                  <p className="text-muted-foreground mt-4 leading-relaxed">
                     {project.lessonsLearned}
                   </p>
                 )}

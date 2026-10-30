@@ -9,9 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { getTranslation, type Locale } from "@/lib/i18n";
@@ -63,16 +63,19 @@ export default function CertificatesPage() {
                   </p>
                 </CardContent>
                 <CardFooter>
-                  <Button asChild variant="outline" className="w-full">
-                    <Link
-                      href={cert.credentialLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="mr-2 w-4 h-4" />{" "}
-                      {t("certificates.button")}
-                    </Link>
-                  </Button>
+                  <a
+                    href={cert.credentialLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${t("certificates.button")} — ${cert.title}`}
+                    className={cn(
+                      buttonVariants({ variant: "outline" }),
+                      "w-full gap-2"
+                    )}
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>{t("certificates.button")}</span>
+                  </a>
                 </CardFooter>
               </Card>
             </motion.div>
