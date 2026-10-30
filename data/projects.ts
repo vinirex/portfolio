@@ -34,7 +34,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
       slug: "caregames-final",
       title: "CareGames — Finalista FIAP NEXT",
       thumbnail: "/projects/caregames.png",
-      videoPreview: "",
+      videoPreview: "https://www.youtube.com/embed/4-i2PmZJjLA",
       liveDemo: "",
       githubUrl: "https://github.com/vinirex/caregames-final",
       linkedinUrl: CAREGAMES_LINKEDIN_POST,
@@ -48,11 +48,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
         "Plataforma gamificada de saúde preventiva e bem-estar que incentiva hábitos saudáveis com acompanhamento de metas, integração com wearables e rankings competitivos. Projeto finalista e medalhista no FIAP NEXT.",
       results:
         "Projeto finalista premiado com medalha no festival de inovação e tecnologia FIAP NEXT.",
-      images: [
-        "/projects/caregames.png",
-        "/projects/caregames-screen.jpg",
-        "/projects/caregames-logo.png",
-      ],
+      images: ["/projects/caregames.png"],
     },
     {
       slug: "inferential-analysis-brasilian-exports",
@@ -92,7 +88,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
       slug: "caregames-final",
       title: "CareGames — FIAP NEXT Finalist",
       thumbnail: "/projects/caregames.png",
-      videoPreview: "",
+      videoPreview: "https://www.youtube.com/embed/4-i2PmZJjLA",
       liveDemo: "",
       githubUrl: "https://github.com/vinirex/caregames-final",
       linkedinUrl: CAREGAMES_LINKEDIN_POST,
@@ -106,11 +102,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
         "Gamified preventive health and wellness platform that encourages healthy habits with goal tracking, wearable integration, and competitive rankings. Finalist and medalist project at FIAP NEXT.",
       results:
         "Finalist project awarded a medal at the FIAP NEXT technology and innovation festival.",
-      images: [
-        "/projects/caregames.png",
-        "/projects/caregames-screen.jpg",
-        "/projects/caregames-logo.png",
-      ],
+      images: ["/projects/caregames.png"],
     },
     {
       slug: "inferential-analysis-brasilian-exports",

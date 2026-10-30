@@ -14,7 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, Play } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { getTranslation, type Locale } from "@/lib/i18n";
@@ -104,7 +104,8 @@ export default function ProjectsPage() {
                   <CardFooter className="flex flex-col items-stretch gap-3 pt-3 border-t border-border/40">
                     {(project.githubUrl ||
                       project.liveDemo ||
-                      project.linkedinUrl) && (
+                      project.linkedinUrl ||
+                      project.videoPreview) && (
                       <div className="flex flex-wrap items-center gap-2">
                         {project.githubUrl && (
                           <a
@@ -150,6 +151,19 @@ export default function ProjectsPage() {
                             <FaLinkedin className="w-3.5 h-3.5" />
                             <span>{linkedinLabel}</span>
                           </a>
+                        )}
+                        {project.videoPreview && (
+                          <Link
+                            href={`/${locale}/projects/${project.slug}#video-demo`}
+                            aria-label={`${t("projects.watchVideo")} — ${project.title}`}
+                            className={cn(
+                              buttonVariants({ variant: "outline", size: "sm" }),
+                              "gap-1.5"
+                            )}
+                          >
+                            <Play className="w-3.5 h-3.5" />
+                            <span>{t("projects.watchVideo")}</span>
+                          </Link>
                         )}
                       </div>
                     )}

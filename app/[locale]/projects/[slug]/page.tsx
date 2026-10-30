@@ -143,6 +143,24 @@ export default async function ProjectCaseStudy({ params }: Props) {
               </section>
             )}
 
+            {project.videoPreview && (
+              <section id="video-demo">
+                <h2 className="text-2xl font-bold mb-3">
+                  {t("projectDetail.videoDemo")}
+                </h2>
+                <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black border border-border">
+                  <iframe
+                    src={project.videoPreview}
+                    title={`${project.title} — ${t("projectDetail.videoDemo")}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                </div>
+              </section>
+            )}
+
             {project.architecture && (
               <section>
                 <h2 className="text-2xl font-bold mb-3">
