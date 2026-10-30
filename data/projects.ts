@@ -7,6 +7,7 @@ export type ProjectItem = {
   videoPreview: string;
   liveDemo: string;
   githubUrl: string;
+  linkedinUrl?: string;
   technologies: string[];
   category: string;
   duration?: string;
@@ -19,8 +20,32 @@ export type ProjectItem = {
   images: string[];
 };
 
+const CAREGAMES_LINKEDIN_POST =
+  "https://www.linkedin.com/posts/-vini-silva_fiap-fiapnext-careplus-ugcPost-7519957515313295360-vRDJ/?highlightedUpdateUrn=urn%3Ali%3Aactivity%3A7519957516605165568&highlightedUpdateType=SOCIAL_SHARE&origin=SOCIAL_SHARE&utm_source=share&utm_medium=member_desktop&rcm=ACoAADNLvA0B-ZxY1HgC135in8bpUAYoNZ4ubIM";
+const SPACEECONOMY_LINKEDIN_POST =
+  "https://www.linkedin.com/posts/-vini-silva_dotnet-aspnetcore-microservices-ugcPost-7470088090917724160-ybsC/?highlightedUpdateUrn=urn%3Ali%3Aactivity%3A7470127717909413888&highlightedUpdateType=SOCIAL_SHARE&origin=SOCIAL_SHARE&utm_source=share&utm_medium=member_desktop&rcm=ACoAADNLvA0B-ZxY1HgC135in8bpUAYoNZ4ubIM"
 export const projectsByLocale: Record<Locale, ProjectItem[]> = {
   pt: [
+    {
+      slug: "caregames-final",
+      title: "CareGames — Finalista FIAP NEXT",
+      thumbnail:
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      videoPreview: "",
+      liveDemo: "",
+      githubUrl: "https://github.com/vinirex/caregames-final",
+      linkedinUrl: CAREGAMES_LINKEDIN_POST,
+      technologies: ["React Native", "Expo", "TypeScript", ".NET"],
+      category: "Mobile",
+      problem:
+        "Projeto desenvolvido no Challenge da FIAP em parceria com a Care Plus para incentivar hábitos saudáveis e engajamento contínuo em saúde preventiva por meio de gamificação, sistema de recompensas, rankings competitivos e integração com dispositivos wearables.",
+      solution: `Projeto finalista e medalhista no FIAP NEXT (repositório na conta GitHub vinirex: https://github.com/vinirex/caregames-final). Aplicativo voltado à saúde preventiva e bem-estar gamificado, permitindo acompanhamento de metas, integração com wearables e rankings competitivos. Confira a publicação no LinkedIn sobre a conquista no FIAP NEXT: ${CAREGAMES_LINKEDIN_POST}`,
+      results:
+        "Projeto finalista premiado com medalha no festival de inovação e tecnologia FIAP NEXT.",
+      images: [
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      ],
+    },
     {
       slug: "inferential-analysis-brasilian-exports",
       title: "Análise Inferencial das Exportações Brasileiras",
@@ -47,6 +72,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
       videoPreview: "",
       liveDemo: "",
       githubUrl: "",
+      linkedinUrl: SPACEECONOMY_LINKEDIN_POST,
       technologies: ["Web"],
       category: "Web",
       solution:
@@ -57,6 +83,26 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
     },
   ],
   en: [
+    {
+      slug: "caregames-final",
+      title: "CareGames — FIAP NEXT Finalist",
+      thumbnail:
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      videoPreview: "",
+      liveDemo: "",
+      githubUrl: "https://github.com/vinirex/caregames-final",
+      linkedinUrl: CAREGAMES_LINKEDIN_POST,
+      technologies: ["React Native", "Expo", "TypeScript", ".NET"],
+      category: "Mobile",
+      problem:
+        "Developed for the FIAP Challenge in partnership with Care Plus to encourage healthy habits and continuous engagement in preventive healthcare through gamification, rewards, competitive rankings, and wearable device integration.",
+      solution: `Finalist and medalist project at FIAP NEXT (hosted under the vinirex GitHub account: https://github.com/vinirex/caregames-final). Gamified preventive health and wellness platform featuring health goal tracking, wearable integration, and competitive rankings. View the LinkedIn post about the FIAP NEXT achievement: ${CAREGAMES_LINKEDIN_POST}`,
+      results:
+        "Finalist project awarded a medal at the FIAP NEXT technology and innovation festival.",
+      images: [
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      ],
+    },
     {
       slug: "inferential-analysis-brasilian-exports",
       title: "Inferential Analysis of Brazilian Exports",
@@ -83,6 +129,7 @@ export const projectsByLocale: Record<Locale, ProjectItem[]> = {
       videoPreview: "",
       liveDemo: "",
       githubUrl: "",
+      linkedinUrl: SPACEECONOMY_LINKEDIN_POST,
       technologies: ["Web"],
       category: "Web",
       solution:
@@ -101,8 +148,8 @@ export function getProjects(locale: Locale): ProjectItem[] {
 }
 
 export const projectCategoriesByLocale: Record<Locale, string[]> = {
-  pt: ["Todos", "Python", "Análise de Dados", "Web"],
-  en: ["All", "Python", "Data Analysis", "Web"],
+  pt: ["Todos", "Mobile", "React Native", ".NET", "Python", "Análise de Dados", "Web"],
+  en: ["All", "Mobile", "React Native", ".NET", "Python", "Data Analysis", "Web"],
 };
 
 export const projectCategories = projectCategoriesByLocale.en;

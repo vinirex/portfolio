@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import { getProjects, projectCategoriesByLocale } from "@/data/projects";
 import Link from "next/link";
@@ -15,9 +15,29 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { getTranslation, type Locale } from "@/lib/i18n";
+
+function renderTextWithLinks(text: string): ReactNode {
+  const parts = text.split(/(https?:\/\/[^\s)]+)/g);
+  return parts.map((part, index) => {
+    if (part.match(/^https?:\/\//)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline hover:opacity-80 break-all"
+        >
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+}
 
 export default function ProjectsPage() {
   const pathname = usePathname();
@@ -70,7 +90,9 @@ export default function ProjectsPage() {
         {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => {
-            const hasLinks = Boolean(project.liveDemo || project.githubUrl);
+            const hasLinks = Boolean(
+              project.liveDemo || project.githubUrl || project.linkedinUrl
+            );
             return (
               <motion.div
                 key={project.slug}
@@ -120,6 +142,22 @@ export default function ProjectsPage() {
                             </Link>
                           </Button>
                         )}
+                        {project.linkedinUrl && (
+                          <Button
+                            asChild
+                            size="icon"
+                            variant="secondary"
+                            className="rounded-full"
+                          >
+                            <Link
+                              href={project.linkedinUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <FaLinkedin className="w-4 h-4" />
+                            </Link>
+                          </Button>
+                        )}
                       </div>
                     )}
                   </div>
@@ -147,8 +185,8 @@ export default function ProjectsPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="flex-grow">
-                    <p className="text-muted-foreground line-clamp-3">
-                      {project.solution}
+                    <p className="text-muted-foreground line-clamp-4">
+                      {renderTextWithLinks(project.solution)}
                     </p>
                   </CardContent>
                   <CardFooter>

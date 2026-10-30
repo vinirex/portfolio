@@ -3,15 +3,36 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, ArrowLeft } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 import { getTranslation, type Locale } from "@/lib/i18n";
+import type { ReactNode } from "react";
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
+
+function renderTextWithLinks(text: string): ReactNode {
+  const parts = text.split(/(https?:\/\/[^\s)]+)/g);
+  return parts.map((part, index) => {
+    if (part.match(/^https?:\/\//)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline hover:opacity-80 break-all"
+        >
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, slug } = await params;
@@ -52,8 +73,8 @@ export default async function ProjectCaseStudy({ params }: Props) {
             </Badge>
           ))}
         </div>
-        {(project.liveDemo || project.githubUrl) && (
-          <div className="flex gap-4">
+        {(project.liveDemo || project.githubUrl || project.linkedinUrl) && (
+          <div className="flex flex-wrap gap-4">
             {project.liveDemo && (
               <Button asChild>
                 <Link
@@ -80,6 +101,19 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 </Link>
               </Button>
             )}
+            {project.linkedinUrl && (
+              <Button asChild variant="outline">
+                <Link
+                  href={project.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center"
+                >
+                  <FaLinkedin className="mr-2 w-4 h-4" />
+                  <span>{t("projectDetail.linkedinPost")}</span>
+                </Link>
+              </Button>
+            )}
           </div>
         )}
       </header>
@@ -100,7 +134,9 @@ export default async function ProjectCaseStudy({ params }: Props) {
               <h2 className="text-2xl font-bold mb-4">
                 {t("projectDetail.overview")}
               </h2>
-              <p className="text-muted-foreground">{project.solution}</p>
+              <p className="text-muted-foreground">
+                {renderTextWithLinks(project.solution)}
+              </p>
             </section>
 
             {project.problem && (
@@ -108,7 +144,9 @@ export default async function ProjectCaseStudy({ params }: Props) {
                 <h2 className="text-2xl font-bold mb-4">
                   {t("projectDetail.problem")}
                 </h2>
-                <p className="text-muted-foreground">{project.problem}</p>
+                <p className="text-muted-foreground">
+                  {renderTextWithLinks(project.problem)}
+                </p>
               </section>
             )}
 
